@@ -1,6 +1,7 @@
 package com.iflove.todolist.controller;
 
 import com.iflove.todolist.common.domain.vo.response.RestBean;
+import com.iflove.todolist.domain.vo.request.UserLoginReq;
 import com.iflove.todolist.domain.vo.request.UserRegisterReq;
 import com.iflove.todolist.domain.vo.response.UserLoginInfoResp;
 import com.iflove.todolist.service.UserService;
@@ -31,8 +32,7 @@ public class AuthorizeController {
 
     /**
      * 用户登录
-     * @param name 用户名
-     * @param password 密码
+     * @param req 用户登录请求
      * @return {@link RestBean}<{@link UserLoginInfoResp}
      */
     @PostMapping("login")
@@ -42,9 +42,8 @@ public class AuthorizeController {
             @ApiResponse(responseCode = "502", description = "参数校验失败"),
             @ApiResponse(responseCode = "501", description = "服务器内部错误")
     })
-    public RestBean<UserLoginInfoResp> login(@RequestParam("name") @Length(min = 1, max = 20) String name,
-                                             @RequestParam("password") @Length(min = 6, max = 20) String password) {
-        return RestBean.success(userService.login(name, password));
+    public RestBean<UserLoginInfoResp> login(@RequestBody @Valid UserLoginReq req) {
+        return RestBean.success(userService.login(req));
     }
 
     /**

@@ -4,6 +4,7 @@ package com.iflove.todolist.service;
 import com.iflove.todolist.common.domain.vo.response.RestBean;
 import com.iflove.todolist.domain.vo.request.PasswordResetReq;
 import com.iflove.todolist.domain.vo.request.UserInfoModifyReq;
+import com.iflove.todolist.domain.vo.request.UserLoginReq;
 import com.iflove.todolist.domain.vo.request.UserRegisterReq;
 import com.iflove.todolist.domain.vo.response.UserInfoResp;
 import com.iflove.todolist.domain.vo.response.UserLoginInfoResp;
@@ -21,11 +22,10 @@ public interface UserService {
 
     /**
      * 用户登录
-     * @param username 用户名
-     * @param password 密码
+     * @param req 用户登录请求
      * @return {@link UserLoginInfoResp}
      */
-    UserLoginInfoResp login(String username, String password);
+    UserLoginInfoResp login(UserLoginReq req);
 
     /**
      * 用户注册

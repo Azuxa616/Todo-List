@@ -14,6 +14,7 @@ import com.iflove.todolist.dao.UserDao;
 import com.iflove.todolist.domain.entity.User;
 import com.iflove.todolist.domain.vo.request.PasswordResetReq;
 import com.iflove.todolist.domain.vo.request.UserInfoModifyReq;
+import com.iflove.todolist.domain.vo.request.UserLoginReq;
 import com.iflove.todolist.domain.vo.request.UserRegisterReq;
 import com.iflove.todolist.domain.vo.response.UserInfoResp;
 import com.iflove.todolist.domain.vo.response.UserLoginInfoResp;
@@ -49,12 +50,13 @@ public class UserServiceImpl implements UserService {
 
     /**
      * 用户登录
-     * @param username 用户名
-     * @param password 密码
+     * @param req 用户登录请求
      * @return {@link UserLoginInfoResp}
      */
     @Override
-    public UserLoginInfoResp login(String username, String password) {
+    public UserLoginInfoResp login(UserLoginReq req) {
+        String username = req.getName();
+        String password = req.getPassword();
         //AuthenticationManager authenticate进行用户认证
         UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(username, password);
         Authentication authentication = authenticationManager.authenticate(authenticationToken);
