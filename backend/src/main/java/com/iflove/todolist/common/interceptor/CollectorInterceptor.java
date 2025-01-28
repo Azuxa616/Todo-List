@@ -26,6 +26,8 @@ public class CollectorInterceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         RequestInfo info = new RequestInfo();
         String token = request.getHeader("Authorization").substring(7);
+        // 设置 token
+        info.setToken(token);
         Long uid = ((NumberWithFormat) JWTUtil.parseToken(token).getPayload("uid")).longValue();
         // 设置uid
         info.setUid(uid);
