@@ -2,13 +2,15 @@
     import { RouterLink} from 'vue-router';
     import { ref,reactive} from 'vue';
     import {defineComponent} from 'vue'
-    import axios from 'axios';
+    import {login} from '@/net/index.ts'
+    import router from '../router/index';
 
     defineComponent({name: 'LoginForm'})
 
 
     let username = ref('');
     let password = ref('');
+    let remember = ref(false);
     let error =reactive({
         value: false,
         message: '',
@@ -17,15 +19,11 @@
 
 
     function onSubmit() {
-      // TODO: implement login logic here
-      axios.post('http://127.0.0.1:4523/m1/5804096-5489112-default/Login/', {
-        username: username.value,
-        password: password.value,
-      }).then((response) => {
-        console.log(response)
-        id=response.data.id;
+      login(username.value, password.value, remember.value, () => {
+        router.push({path:'/home'})
       })
     }
+      // router.push({path:'/home'})
 
   </script>
 
@@ -34,31 +32,45 @@
       <div class="title">Login</div>
       <form @submit.prevent="onSubmit">
         <div class="form-group">
-        <div class="form">
-          <label for="username">Username:</label><br>
-          <input type="text" id="username" v-model="username" required placeholder="Enter your username" />
+          <div class="form">
+            <label for="username">Username:</label><br>
+            <input type="text" id="username" v-model="username" required placeholder="Enter your username" />
+          </div>
+
+          <div class="form">
+            <label for="password">Password:</label><br>
+            <input type="password" id="password" v-model="password" required placeholder="Enter your password"/>
+          </div>
+
         </div>
-        <div class="form">
-          <label for="password">Password:</label><br>
-          <input type="password" id="password" v-model="password" required placeholder="Enter your password"/>
-        </div>
-        </div>
+
         <div class="error-info" v-if="error.value"> {{ error.message }} </div>
+        <div class="checkbox-group">
+          <label for="remember">Remember me</label>
+          <input type="checkbox" v-model="remember" id="remember" />
+        </div>
         <button type="submit">Login</button>
         <div class="signup"> Don't have an account? <router-link to="/register">Join us</router-link> </div>
       </form>
 
-      <div >
-        {{id}}
-      </div>
     </div>
   </template>
-
   <style scoped>
+    #remember {
+      width: 15px;
+      height: 15px;
+      margin-left :10px
+    }
+    .checkbox-group {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
 
+    }
     label {
       font-weight: bold;
       margin-bottom: 10px;
+      margin-top: 5px;
       font-size: 16px;
     }
     input{
