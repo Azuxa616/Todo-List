@@ -1,81 +1,124 @@
 <template>
   <div class="AccountInfo">
-    <h1>
-      {{name}}
-    </h1>
-    <!--昵称-->
-    <div class="Info-item">
-      <label class="label">Name:</label>
-      <input type="text" placeholder="请输入昵称" v-model="props.name">
-    </div>
+  <el-form :model="form" label-width="auto" style="max-width: 600px">
 
-    <!--头像-->
-    <div class="Info-item">
-      <label class="label">HeadImg:</label>
-      <img :src="props.headImg" alt="头像">
-      <button class="button" @click="changeHeadImg"> 更换头像 </button>
-    </div>
-    <!--性别-->
-    <div class="Info-item">
-      <label class="label">Gender:</label>
-      <div>
-        <input type="radio" name="gender"  value="male"  v-model="props.gender"> 男
-        <input type="radio" name="gender"  value="female" v-model="props.gender">  女
+    <el-form-item  id="account-info" >
+      <!--头像-->
+      <img class="avatar" :src="form.avatarUrl" alt="avatar" />
+
+      <div class="info-show-box">
+        <el-form-item id="show-username" >
+            <span class="username">{{form.username}}</span>
+        </el-form-item>
+        <!--账号id-->
+        <el-form-item id="show-uid" ><span class="uid" >UID:{{form.uid}}</span> </el-form-item>
       </div>
-    </div>
-    <!--用户名-->
-    <div class="Info-item">
-      <label class="label">Username:</label>
-      <div class="info_readonly"> {{username}} </div>
-    </div>
+      <!--用户名-->
 
-    <!--邮箱-->
-    <div class="Info-item">
-      <label class="label">Email:</label>
-      <input type="text" placeholder="请输入邮箱" v-model="props.email">
-    </div>
+    </el-form-item>
+<!--昵称-->
+    <el-form-item label="Nickname:">
+      <el-input v-model="form.nickname" />
+    </el-form-item>
+<!--邮箱-->
+    <el-form-item label="Email:">
+      <el-input v-model="form.email" />
+    </el-form-item>
 
-    <!--手机号-->
-    <div class="Info-item">
-      <label class="label">Phone Number:</label>
-      <input type="text" placeholder="请输入手机号" v-model=" props.phonenumber">
-    </div>
+<!--    电话号码-->
+    <el-form-item label="Phone Number:">
+      <el-input v-model="form.phonenumber" />
+    </el-form-item>
+<!--    性别-->
+    <el-form-item label="Gender:">
+      <el-radio-group v-model="form.gender">
+        <el-radio-button value="Male">Male</el-radio-button>
+        <el-radio-button value="Female">Female</el-radio-button>
+      </el-radio-group>
+    </el-form-item>
+<!--    个签-->
+    <el-form-item label="Signature">
+      <el-input v-model="form.signature" type="textarea" />
+    </el-form-item>
 
-    <!--个性签名-->
-    <div class="Info-item">
-      <label class="label">Signature:</label>
-      <textarea placeholder="请输入个性签名" v-model=" props.signature">  </textarea>
-    </div>
-    <div class = "button-box">
-      <button class="button" @click="save">保存</button>
-      <button class="button" @click="logout">退出登录</button>
-      <button class="button" @click="changePassword">修改密码</button>
-    </div>
+    <div>
+      <div>
+        <el-button id="save-btn" type="primary" @click="onSubmit">Save</el-button>
+      </div>
+      <div class="Btn-group">
+        <el-button @click="onCancel" id="cancel-btn">Cancel</el-button>
+        <el-button @click="onChangePassword" id="change-password-btn">Change Password</el-button>
+      </div>
 
+    </div>
+  </el-form>
   </div>
 </template>
 
-<script setup lang="ts">
-import {defineComponent} from 'vue'
+<script lang="ts" setup>
+import { reactive } from 'vue'
+import router from '@/router/index.ts'
+// do not use same name with ref
+const form = reactive({
+  avatarUrl: '../src/assets/img/TestAvatar.png',
+  nickname: '',
+  username: 'TestUser',
+  uid:'000000',
+  email: '',
+  phonenumber: '',
+  gender: '',
+  signature: '',
+})
 
+const onSubmit = () => {
+  console.log('submit!')
+}
+const onCancel = () => {
+  router.go(0)
+}
+const onChangePassword = () => {
 
-
-defineComponent({name: "AccountInfo"})
-
-//todo: 输入验证
-
-//todo: 按钮实现
-
-
-let props = defineProps(['name','username','email','phonenumber','signature','headImg','gender'])
-// console.log(props.name);
-
-function changeHeadImg(){}
-function save(){}
-function logout(){}
-function changePassword(){}
-
+}
 </script>
 <style scoped>
+.Btn-group {
+  display:flex;
+  justify-content: space-evenly;
+  margin-top: 20px;
+}
+
+#save-btn{
+  width: 80%;
+  margin-left: 10%;
+}
+.info-show-box {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+}
+.AccountInfo {
+  contain: layout;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.avatar {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.username {
+  font-size: 24px;
+  font-weight: bold;
+  color: #303133;
+  margin-left: 20px
+}
+.uid{
+  margin-left: 20px
+}
 
 </style>
