@@ -19,11 +19,11 @@
 
 
     function onSubmit() {
-      login(username.value, password.value, remember.value, () => {
-        router.push({path:'/home'})
-      })
+      // login(username.value, password.value, remember.value, () => {
+      //   router.push({path:'/home'})
+      // })
+      router.push({})
     }
-      // router.push({path:'/home'})
 
   </script>
 

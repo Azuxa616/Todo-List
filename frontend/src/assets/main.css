@@ -3,6 +3,7 @@
 #app {
   margin: 0 auto;
   font-weight: normal;
+  background:linear-gradient(to bottom right, rgba(57, 146, 218, 0.8), rgba(222, 252, 137, 0.8));
 }
 
 a,
@@ -26,4 +27,5 @@ body {
 #app {
   width: 100%;
   margin: 0;
+  min-width: 1000px;
 }

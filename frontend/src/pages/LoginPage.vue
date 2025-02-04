@@ -5,13 +5,8 @@
 </template>
 
 <script setup lang="ts">
-import LoginForm from '@/components/LoginForm.vue'
-import router from "@/router/index.ts";
-import emitter from "@/utils/emitter.ts";
+import LoginForm from '@/components/Login_Form.vue'
 
-emitter.on("toHomePage", (data) => {
-  router.push("/home");
-})
 </script>
 
 <style>

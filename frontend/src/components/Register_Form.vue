@@ -132,7 +132,7 @@ function onSubmit() {
       </div>
       <button type="submit">Register</button>
       <div class="signup"> Already have an account?
-        <router-link to="/register">Login now</router-link>
+        <router-link to="/login">Login now</router-link>
       </div>
     </form>
   </div>

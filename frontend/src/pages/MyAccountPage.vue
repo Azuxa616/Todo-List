@@ -5,13 +5,13 @@
       <hr>
     </div>
     <div class="page-content">
-      <AccountInfo/>
+      <AccountInfoForm/>
     </div>
 </div>
 </template>
 
 <script setup lang="ts">
-  import AccountInfo from "@/components/AccountInfo.vue";
+  import AccountInfoForm from "@/components/AccountInfo_Form.vue";
   import {onMounted, ref} from "vue";
   import router from "@/router/index.ts";
 
