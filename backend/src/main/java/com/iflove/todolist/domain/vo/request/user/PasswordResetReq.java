@@ -8,7 +8,7 @@ import org.hibernate.validator.constraints.Length;
 /**
  * @author 苍镜月
  * @version 1.0
- * @implNote
+ * @implNote 密码重置请求
  */
 
 @Data

@@ -7,7 +7,7 @@ import lombok.Data;
 /**
  * @author 苍镜月
  * @version 1.0
- * @implNote
+ * @implNote 头像上传请求
  */
 
 @Data

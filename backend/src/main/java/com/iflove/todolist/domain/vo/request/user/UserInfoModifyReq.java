@@ -8,7 +8,7 @@ import org.hibernate.validator.constraints.Length;
 /**
  * @author 苍镜月
  * @version 1.0
- * @implNote
+ * @implNote 用户信息修改请求
  */
 
 @Schema(description = "用户信息修改请求")

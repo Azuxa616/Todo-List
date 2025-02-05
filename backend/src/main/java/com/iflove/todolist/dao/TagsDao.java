@@ -19,27 +19,39 @@ public class TagsDao extends ServiceImpl<TagsMapper, Tags> {
 
     /**
      * 创建用户的任务标签(用户独有), 可以一次创建多个
-     * @param tags 任务标签列表
+     * @param tagNameList 任务标签列表
      * @param uid 用户 id
      */
-    public void create(@NotNull List<String> tags, Long uid) {
-        baseMapper.insert(tags
+    public void create(@NotNull List<String> tagNameList, Long uid) {
+        baseMapper.insert(tagNameList
                 .stream()
-                .map(tag -> Tags.builder().user_id(uid).name(tag).build())
+                .map(name -> Tags.builder().user_id(uid).name(name).build())
                 .collect(Collectors.toList())
         );
     }
 
     /**
+     * 删除用户的任务标签(用户独有)，可以一次删除多个
+     * @param tagNameList 标签名列表
+     * @param uid 用户 id
+     */
+    public void delete(@NotNull List<String> tagNameList, Long uid) {
+        lambdaUpdate()
+                .eq(Tags::getUser_id, uid)
+                .in(Tags::getName, tagNameList)
+                .remove();
+    }
+
+    /**
      * 根据标签名和用户 id 查询是否存在
-     * @param tags 标签名列表
+     * @param tagNameList 标签名列表
      * @param uid 用户 id
      * @return 标签列表
      */
-    public List<Tags> queryByTagsAndId(@NotNull List<String> tags, Long uid) {
+    public List<Tags> queryByNamesAndId(@NotNull List<String> tagNameList, Long uid) {
         return lambdaQuery()
                 .eq(Tags::getUser_id, uid)
-                .in(Tags::getName, tags)
+                .in(Tags::getName, tagNameList)
                 .list();
     }
 }

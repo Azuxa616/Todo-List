@@ -9,7 +9,7 @@ import java.util.Date;
 /**
  * @author 苍镜月
  * @version 1.0
- * @implNote
+ * @implNote 用户信息
  */
 @Data
 @Schema(description = "用户信息")

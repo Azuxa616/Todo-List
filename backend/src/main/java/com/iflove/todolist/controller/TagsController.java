@@ -2,7 +2,7 @@ package com.iflove.todolist.controller;
 
 import com.iflove.todolist.common.domain.vo.response.RestBean;
 import com.iflove.todolist.common.utils.RequestHolder;
-import com.iflove.todolist.domain.vo.request.tags.CreateTagsReq;
+import com.iflove.todolist.domain.vo.request.tags.TagsNameReq;
 import com.iflove.todolist.service.TagsService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -12,10 +12,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @author 苍镜月
@@ -31,7 +28,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class TagsController {
     private final TagsService tagsService;
 
-    // TODO 创建标签，为任务添加标签，删除标签，为任务删除标签
+    // TODO 为任务添加标签，为任务删除标签
 
     /**
      * 创建用户的任务标签(用户独有), 可以一次创建多个
@@ -45,10 +42,26 @@ public class TagsController {
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "success"),
     })
-    public RestBean<Void> create(@RequestBody @Valid CreateTagsReq req) {
-        tagsService.create(req, RequestHolder.get().getUid());
+    public RestBean<Void> create(@RequestBody @Valid TagsNameReq req) {
+        tagsService.create(req.getTagNameList(), RequestHolder.get().getUid());
         return RestBean.success();
     }
 
-
+    /**
+     * 删除用户的任务标签(用户独有)，可以一次删除多个
+     * @param req 任务标签删除请求
+     * @return {@link RestBean}
+     */
+    @DeleteMapping("delete")
+    @Operation(summary = "删除标签",
+            description = "删除用户的任务标签(用户独有)，可以一次删除多个",
+            security = {@SecurityRequirement(name = "Authorization")})
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "success"),
+    })
+    public RestBean<Void> delete(@RequestBody @Valid TagsNameReq req) {
+        // FIXME 暂时不严谨，最终效果应该是查询是否有任务使用这个标签，如果都没有才能删除
+        tagsService.delete(req.getTagNameList(), RequestHolder.get().getUid());
+        return RestBean.success();
+    }
 }

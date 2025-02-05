@@ -1,6 +1,6 @@
 package com.iflove.todolist.service;
 
-import com.iflove.todolist.domain.vo.request.tags.CreateTagsReq;
+import java.util.List;
 
 /**
 * @author cangjingyue
@@ -11,8 +11,15 @@ public interface TagsService {
 
     /**
      * 创建用户的任务标签(用户独有), 可以一次创建多个
-     * @param req 任务标签创建请求
+     * @param tagNameList 标签名列表
      * @param uid 用户 id
      */
-    void create(CreateTagsReq req, Long uid);
+    void create(List<String> tagNameList, Long uid);
+
+    /**
+     * 删除用户的任务标签(用户独有)，可以一次删除多个
+     * @param tagNameList 标签名列表
+     * @param uid 用户 id
+     */
+    void delete(List<String> tagNameList, Long uid);
 }
