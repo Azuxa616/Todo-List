@@ -1,6 +1,7 @@
 package com.iflove.todolist.common.exception;
 
 import lombok.AllArgsConstructor;
+import lombok.Data;
 
 /**
  * @author 苍镜月
@@ -8,8 +9,8 @@ import lombok.AllArgsConstructor;
  * @implNote
  */
 @AllArgsConstructor
-public enum TagsErrorEnum implements ErrorEnum {
-    TAG_DUPLICATE(20001, "标签已存在, 请勿重复创建"),
+public enum CategoryErrorEnum implements ErrorEnum {
+    CATEGORY_DUPLICATE(30001, "分类名已存在"),
     ;
     private final Integer code;
     private final String msg;

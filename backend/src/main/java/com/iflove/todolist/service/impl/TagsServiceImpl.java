@@ -32,7 +32,7 @@ public class TagsServiceImpl implements TagsService {
         List<Tags> exists = tagsDao.queryByNamesAndId(tagNameList, uid);
         if (!exists.isEmpty()) {
             List<String> duplicateNames = exists.stream().map(Tags::getName).toList();
-            throw new BusinessException(TagsErrorEnum.TAG_EXIST.getErrorCode(), duplicateNames + " 上述标签已存在，请勿重复创建");
+            throw new BusinessException(TagsErrorEnum.TAG_DUPLICATE.getErrorCode(), duplicateNames + " 上述标签已存在，请勿重复创建");
         }
         tagsDao.create(tagNameList, uid);
     }
