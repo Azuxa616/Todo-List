@@ -4,7 +4,7 @@ import {unauthorized} from "@/net/index.js";
 import LoginPage from "@/pages/LoginPage.vue";
 import HomePage from "@/pages/HomePage.vue";
 import MyAccountPage from "@/pages/MyAccountPage.vue";
-import TodoApp from "@/components/TodoApp.vue";
+import TodoListApp from "@/components/TodoList_App.vue";
 import RegisterPage from "@/pages/RegisterPage.vue";
 
 const router = createRouter({
@@ -39,7 +39,7 @@ const router = createRouter({
                 {
                     name:'todoApp',
                     path: 'todo',
-                    component:TodoApp
+                    component:TodoListApp
                 }
                 ]
         }

@@ -1,7 +1,7 @@
 <script setup lang="ts">
   import {logout} from "@/net/index.ts";
   import router from "@/router";
-  import TodoApp from "@/components/TodoApp.vue";
+  import TodoListApp from "@/components/TodoList_App.vue";
   import AsideNavigator_Menu from "@/components/AsideNavigator_Menu.vue";
   function toMyAccount() {
     console.log("111")

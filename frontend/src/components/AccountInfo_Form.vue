@@ -1,55 +1,60 @@
 <template>
   <div class="AccountInfo">
-  <el-form :model="form" label-width="auto" style="max-width: 600px">
+  <el-form :model="form" label-width="auto" style="min-width: 600px" size="large" >
 
     <el-form-item  id="account-info" >
       <!--头像-->
-      <img class="avatar" :src="form.avatarUrl" alt="avatar" />
+      <img class="avatar" :src="form.UserInfo.value.avatarUrl" alt="avatar" />
 
       <div class="info-show-box">
         <el-form-item id="show-username" >
-            <span class="username">{{form.username}}</span>
+            <span class="username">{{form.UserInfo.value.nickname}}</span>
         </el-form-item>
         <!--账号id-->
-        <el-form-item id="show-uid" ><span class="uid" >UID:{{form.uid}}</span> </el-form-item>
+        <el-form-item id="show-uid" ><span class="uid" >UID:{{form.UserInfo.value.uid}}</span> </el-form-item>
       </div>
-      <!--用户名-->
+    </el-form-item>
 
+    <!--用户名-->
+    <el-form-item label="Username:">
+      <span class="uid" >{{form.UserInfo.value.username}}</span>
     </el-form-item>
 <!--昵称-->
     <el-form-item label="Nickname:">
-      <el-input v-model="form.nickname" />
+      <el-input v-model="form.UserInfo.value.nickname" />
     </el-form-item>
 <!--邮箱-->
     <el-form-item label="Email:">
-      <el-input v-model="form.email" />
+      <el-input v-model="form.UserInfo.value.email" />
     </el-form-item>
 
 <!--    电话号码-->
     <el-form-item label="Phone Number:">
-      <el-input v-model="form.phonenumber" />
+      <el-input v-model="form.UserInfo.value.phone" />
     </el-form-item>
 <!--    性别-->
     <el-form-item label="Gender:">
-      <el-radio-group v-model="form.gender">
-        <el-radio-button value="Male">Male</el-radio-button>
-        <el-radio-button value="Female">Female</el-radio-button>
+      <el-radio-group v-model="form.UserInfo.value.gender">
+        <el-radio-button value="male">Male</el-radio-button>
+        <el-radio-button value="female">Female</el-radio-button>
       </el-radio-group>
     </el-form-item>
 <!--    个签-->
     <el-form-item label="Signature">
-      <el-input v-model="form.signature" type="textarea" />
+      <el-input v-model="form.UserInfo.value.signature" type="textarea" />
     </el-form-item>
 
     <div>
       <div>
-        <el-button id="save-btn" type="primary" @click="onSubmit">Save</el-button>
+        <el-button id="save-btn" type="success" @click="onSubmit">Save</el-button>
       </div>
       <div class="Btn-group">
+        <el-button @click="onChangePassword" id="change-password-btn" type="primary">Change Password</el-button>
         <el-button @click="onCancel" id="cancel-btn">Cancel</el-button>
-        <el-button @click="onChangePassword" id="change-password-btn">Change Password</el-button>
       </div>
-
+      <div>
+        <el-button id="save-btn" type="danger" @click="onExit">Logout</el-button>
+      </div>
     </div>
   </el-form>
   </div>
@@ -58,26 +63,26 @@
 <script lang="ts" setup>
 import { reactive } from 'vue'
 import router from '@/router/index.ts'
-// do not use same name with ref
-const form = reactive({
-  avatarUrl: '../src/assets/img/TestAvatar.png',
-  nickname: '',
-  username: 'TestUser',
-  uid:'000000',
-  email: '',
-  phonenumber: '',
-  gender: '',
-  signature: '',
-})
+import {useAccountStore} from "@/stores/UserInfo.ts";
+import {storeToRefs} from 'pinia'
+
+const userStore = useAccountStore()
+const form=storeToRefs(userStore);
+//todo:表单验证
 
 const onSubmit = () => {
   console.log('submit!')
+  //todo:账户信息表单提交
 }
 const onCancel = () => {
   router.go(0)
+  //todo:取消操作
 }
 const onChangePassword = () => {
-
+  //todo:修改密码功能
+}
+const onExit = () => {
+  //todo:退出登录功能
 }
 </script>
 <style scoped>
@@ -85,8 +90,14 @@ const onChangePassword = () => {
   display:flex;
   justify-content: space-evenly;
   margin-top: 20px;
+  margin-bottom: 20px;
 }
-
+#cancel-btn{
+  width: 200px;
+}
+#change-password-btn{
+  width: 200px;
+}
 #save-btn{
   width: 80%;
   margin-left: 10%;
