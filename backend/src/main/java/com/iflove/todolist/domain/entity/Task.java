@@ -23,7 +23,7 @@ public class Task implements Serializable {
     /**
      * 任务id
      */
-    @TableId(value = "id", type = IdType.AUTO)
+    @TableId(value = "id", type = IdType.ASSIGN_ID)
     private Long id;
 
     /**

@@ -21,13 +21,13 @@ public class TodolistTags implements Serializable {
     /**
      * 任务ID
      */
-    @TableId(value = "task_id")
+    @TableField(value = "task_id")
     private Long task_id;
 
     /**
      * 标签ID
      */
-    @TableId(value = "tag_id")
+    @TableField(value = "tag_id")
     private Long tag_id;
 
     @TableField(exist = false)
