@@ -1,16 +1,12 @@
 package com.iflove.todolist.service;
 
 
-import com.iflove.todolist.common.domain.vo.response.RestBean;
-import com.iflove.todolist.domain.vo.request.PasswordResetReq;
-import com.iflove.todolist.domain.vo.request.UserInfoModifyReq;
-import com.iflove.todolist.domain.vo.request.UserLoginReq;
-import com.iflove.todolist.domain.vo.request.UserRegisterReq;
-import com.iflove.todolist.domain.vo.response.UserInfoResp;
-import com.iflove.todolist.domain.vo.response.UserLoginInfoResp;
-import jakarta.validation.Valid;
-import jakarta.validation.constraints.Min;
-import org.hibernate.validator.constraints.Length;
+import com.iflove.todolist.domain.vo.request.user.PasswordResetReq;
+import com.iflove.todolist.domain.vo.request.user.UserInfoModifyReq;
+import com.iflove.todolist.domain.vo.request.user.UserLoginReq;
+import com.iflove.todolist.domain.vo.request.user.UserRegisterReq;
+import com.iflove.todolist.domain.vo.response.user.UserInfoResp;
+import com.iflove.todolist.domain.vo.response.user.UserLoginInfoResp;
 
 /**
  * @author 苍镜月

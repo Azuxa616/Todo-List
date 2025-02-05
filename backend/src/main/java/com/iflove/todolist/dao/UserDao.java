@@ -2,7 +2,7 @@ package com.iflove.todolist.dao;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.iflove.todolist.domain.entity.User;
-import com.iflove.todolist.domain.vo.request.UserInfoModifyReq;
+import com.iflove.todolist.domain.vo.request.user.UserInfoModifyReq;
 import com.iflove.todolist.mapper.UserMapper;
 import org.springframework.stereotype.Service;
 

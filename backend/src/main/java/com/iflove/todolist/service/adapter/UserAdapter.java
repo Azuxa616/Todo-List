@@ -2,8 +2,8 @@ package com.iflove.todolist.service.adapter;
 
 import cn.hutool.core.bean.BeanUtil;
 import com.iflove.todolist.domain.entity.User;
-import com.iflove.todolist.domain.vo.response.UserInfoResp;
-import com.iflove.todolist.domain.vo.response.UserLoginInfoResp;
+import com.iflove.todolist.domain.vo.response.user.UserInfoResp;
+import com.iflove.todolist.domain.vo.response.user.UserLoginInfoResp;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.function.Consumer;

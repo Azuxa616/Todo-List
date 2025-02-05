@@ -1,7 +1,6 @@
-package com.iflove.todolist.domain.vo.request;
+package com.iflove.todolist.domain.vo.request.user;
 
 import io.swagger.v3.oas.annotations.media.Schema;
-import jakarta.annotation.Nullable;
 import jakarta.validation.constraints.*;
 import lombok.Data;
 import org.hibernate.validator.constraints.Length;

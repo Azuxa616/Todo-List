@@ -1,4 +1,4 @@
-package com.iflove.todolist.domain.vo.response;
+package com.iflove.todolist.domain.vo.response.user;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.v3.oas.annotations.media.Schema;

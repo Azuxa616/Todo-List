@@ -1,4 +1,4 @@
-package com.iflove.todolist.domain.vo.request;
+package com.iflove.todolist.domain.vo.request.user;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.*;

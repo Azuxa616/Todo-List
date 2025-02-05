@@ -2,23 +2,19 @@ package com.iflove.todolist.controller;
 
 import com.iflove.todolist.common.domain.vo.response.RestBean;
 import com.iflove.todolist.common.utils.RequestHolder;
-import com.iflove.todolist.domain.vo.request.PasswordResetReq;
-import com.iflove.todolist.domain.vo.request.UploadAvatarReq;
-import com.iflove.todolist.domain.vo.request.UserInfoModifyReq;
-import com.iflove.todolist.domain.vo.response.UserInfoResp;
+import com.iflove.todolist.domain.vo.request.user.PasswordResetReq;
+import com.iflove.todolist.domain.vo.request.user.UploadAvatarReq;
+import com.iflove.todolist.domain.vo.request.user.UserInfoModifyReq;
+import com.iflove.todolist.domain.vo.response.user.UserInfoResp;
 import com.iflove.todolist.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import jakarta.annotation.Resource;
-import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
-import org.hibernate.validator.constraints.Length;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 

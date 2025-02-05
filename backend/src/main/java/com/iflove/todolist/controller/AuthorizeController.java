@@ -1,19 +1,16 @@
 package com.iflove.todolist.controller;
 
 import com.iflove.todolist.common.domain.vo.response.RestBean;
-import com.iflove.todolist.domain.vo.request.UserLoginReq;
-import com.iflove.todolist.domain.vo.request.UserRegisterReq;
-import com.iflove.todolist.domain.vo.response.UserLoginInfoResp;
+import com.iflove.todolist.domain.vo.request.user.UserLoginReq;
+import com.iflove.todolist.domain.vo.request.user.UserRegisterReq;
+import com.iflove.todolist.domain.vo.response.user.UserLoginInfoResp;
 import com.iflove.todolist.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import jakarta.annotation.Resource;
-import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.hibernate.validator.constraints.Length;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
