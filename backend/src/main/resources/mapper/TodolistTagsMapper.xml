@@ -4,4 +4,13 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.iflove.todolist.mapper.TodolistTagsMapper">
 
+    <insert id="mapTagsToTask" parameterType="map">
+        <if test="tagNameList != null and tagNameList.size() > 0">
+            INSERT INTO todolist_tags (task_id, tag_id)
+            VALUES
+            <foreach collection="tagNameList" item="tagName" separator=",">
+                (#{taskId}, (SELECT id FROM tags WHERE name = #{tagName}))
+            </foreach>
+        </if>
+    </insert>
 </mapper>

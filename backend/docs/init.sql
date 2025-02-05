@@ -71,9 +71,10 @@ CREATE TABLE `category`
 (
     `id`          BIGINT       NOT NULL AUTO_INCREMENT PRIMARY KEY COMMENT '分类ID',
     `user_id`     BIGINT       NOT NULL COMMENT '用户ID，表示分类属于哪个用户',
-    `name`        VARCHAR(100) NOT NULL UNIQUE COMMENT '分类名称',
+    `name`        VARCHAR(100) NOT NULL COMMENT '分类名称',
     `create_time` DATETIME     NOT NULL DEFAULT NOW() COMMENT '创建时间',
     `update_time` DATETIME     NOT NULL DEFAULT NOW() ON UPDATE NOW() COMMENT '修改时间',
+    UNIQUE (`user_id`, `name`), -- 保证同一用户不能创建重复分类
     FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE
 ) ENGINE = InnoDB
   CHARACTER SET = utf8mb4

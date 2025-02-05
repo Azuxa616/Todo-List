@@ -20,11 +20,11 @@ public class CategoryDao extends ServiceImpl<CategoryMapper, Category> {
 
     /**
      * 创建用户的任务分类(用户独有), 可以一次创建多个
-     * @param tagNameList 任务分类列表
+     * @param categoryNameList 任务分类列表
      * @param uid 用户 id
      */
-    public void create(@NotNull List<String> tagNameList, Long uid) {
-        baseMapper.insert(tagNameList
+    public void create(@NotNull List<String> categoryNameList, Long uid) {
+        baseMapper.insert(categoryNameList
                 .stream()
                 .map(name -> Category.builder().user_id(uid).name(name).build())
                 .collect(Collectors.toList())
@@ -42,5 +42,17 @@ public class CategoryDao extends ServiceImpl<CategoryMapper, Category> {
                 .eq(Category::getUser_id, uid)
                 .in(Category::getName, categoryNameList)
                 .list();
+    }
+
+    /**
+     * 删除用户的任务分类(用户独有)，可以一次删除多个
+     * @param categoryNameList 分类名列表
+     * @param uid 用户 id
+     */
+    public void delete(List<String> categoryNameList, Long uid) {
+        lambdaUpdate()
+                .eq(Category::getUser_id, uid)
+                .in(Category::getName, categoryNameList)
+                .remove();
     }
 }

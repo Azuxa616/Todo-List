@@ -2,6 +2,9 @@ package com.iflove.todolist.mapper;
 
 import com.iflove.todolist.domain.entity.TodolistTags;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 /**
 * @author cangjingyue
@@ -11,6 +14,8 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 */
 public interface TodolistTagsMapper extends BaseMapper<TodolistTags> {
 
+    void mapTagsToTask(@Param("tagNameList") List<String> tagNameList,
+                       @Param("taskId") Long taskId);
 }
 
 

@@ -60,7 +60,6 @@ public class TagsController {
             @ApiResponse(responseCode = "200", description = "success"),
     })
     public RestBean<Void> delete(@RequestBody @Valid TagsNameReq req) {
-        // FIXME 暂时不严谨，最终效果应该是查询是否有任务使用这个标签，如果都没有才能删除
         tagsService.delete(req.getTagNameList(), RequestHolder.get().getUid());
         return RestBean.success();
     }

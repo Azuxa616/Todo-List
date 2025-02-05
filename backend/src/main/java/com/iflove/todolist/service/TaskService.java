@@ -1,7 +1,10 @@
 package com.iflove.todolist.service;
 
+import com.iflove.todolist.common.domain.vo.response.RestBean;
 import com.iflove.todolist.domain.entity.Task;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.iflove.todolist.domain.vo.request.task.CreateTaskReq;
+import jakarta.validation.Valid;
 
 /**
 * @author cangjingyue
@@ -10,4 +13,10 @@ import com.baomidou.mybatisplus.extension.service.IService;
 */
 public interface TaskService {
 
+    /**
+     * 创建任务
+     * @param req 创建任务请求
+     * @param uid 用户 id
+     */
+    void create(CreateTaskReq req, Long uid);
 }

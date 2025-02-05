@@ -1,7 +1,12 @@
 package com.iflove.todolist.mapper;
 
+import com.iflove.todolist.domain.dto.TaskInsertDto;
 import com.iflove.todolist.domain.entity.Task;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.Date;
+import java.util.List;
 
 /**
 * @author cangjingyue
@@ -11,6 +16,11 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 */
 public interface TaskMapper extends BaseMapper<Task> {
 
+    /**
+     * 创建
+     * @param dto 任务插入
+     */
+    void create(TaskInsertDto dto);
 }
 
 

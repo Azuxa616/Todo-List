@@ -37,6 +37,16 @@ public class CategoryServiceImpl implements CategoryService {
         categoryDao.create(categoryNameList, uid);
 
     }
+
+    /**
+     * 删除用户的任务分类(用户独有)，可以一次删除多个
+     * @param categoryNameList 分类名列表
+     * @param uid 用户 id
+     */
+    @Override
+    public void delete(List<String> categoryNameList, Long uid) {
+        categoryDao.delete(categoryNameList, uid);
+    }
 }
 
 
