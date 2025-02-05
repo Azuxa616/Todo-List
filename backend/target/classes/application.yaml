@@ -1,5 +1,5 @@
 server:
-  port: 8081
+  port: 8080
 
 spring:
   profiles:
@@ -40,7 +40,7 @@ springdoc:
     operations-sorter: alpha
   api-docs:
     path: /v3/api-docs
-  group-configs:
+  group-configs:  
     - group: 'default'
       paths-to-match: '/**'
       packages-to-scan:
