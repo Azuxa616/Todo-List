@@ -1,5 +1,7 @@
 package com.iflove.todolist.service.impl;
 
+import com.iflove.todolist.common.exception.BusinessException;
+import com.iflove.todolist.common.exception.TaskErrorEnum;
 import com.iflove.todolist.dao.CategoryDao;
 import com.iflove.todolist.dao.TagsDao;
 import com.iflove.todolist.dao.TaskDao;
@@ -7,6 +9,7 @@ import com.iflove.todolist.dao.TodolistTagsDao;
 import com.iflove.todolist.domain.dto.TaskInsertDto;
 import com.iflove.todolist.domain.entity.Category;
 import com.iflove.todolist.domain.entity.Tags;
+import com.iflove.todolist.domain.entity.Task;
 import com.iflove.todolist.domain.vo.request.task.CreateTaskReq;
 import com.iflove.todolist.service.TaskService;
 import com.iflove.todolist.service.adapter.TaskAdapter;
@@ -65,6 +68,22 @@ public class TaskServiceImpl implements TaskService {
         if (Objects.nonNull(tagNameList) && !tagNameList.isEmpty()) {
             todolistTagsDao.mapTagsToTask(tagNameList, dto.getId());
         }
+    }
+
+    /**
+     * 删除任务
+     * @param id 任务 id
+     * @param uid 用户 id
+     */
+    @Override
+    @Transactional
+    public void delete(Long id, Long uid) {
+        Task task = taskDao.queryByIdAndUid(id, uid);
+        // 任务不存在
+        if (Objects.isNull(task)) {
+            throw new BusinessException(TaskErrorEnum.TASK_NOT_EXIST);
+        }
+        taskDao.delete(id, uid);
     }
 }
 

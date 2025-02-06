@@ -4,6 +4,12 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.iflove.todolist.mapper.TodolistTagsMapper">
 
+    <resultMap id="BaseResultMap" type="com.iflove.todolist.domain.entity.TodolistTags">
+        <id property="task_id" column="task_id" jdbcType="BIGINT"/>
+        <id property="tag_id" column="tag_id" jdbcType="BIGINT"/>
+    </resultMap>
+
+
     <insert id="mapTagsToTask" parameterType="map">
         <if test="tagNameList != null and tagNameList.size() > 0">
             INSERT INTO todolist_tags (task_id, tag_id)

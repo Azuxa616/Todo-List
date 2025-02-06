@@ -10,13 +10,13 @@ mybatis-plus:
 todolist:
   # mysql
   mysql:
-    ip: 116.62.189.123
+    ip: localhost
     port: 3306
     db: todolist
     username: root
     password: 123456
   # redis
   redis:
-    host: 116.62.189.123
+    host: localhost
     port: 6379
     password: 123456

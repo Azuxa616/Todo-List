@@ -5,6 +5,7 @@ import com.iflove.todolist.domain.entity.Task;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.iflove.todolist.domain.vo.request.task.CreateTaskReq;
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
 
 /**
 * @author cangjingyue
@@ -19,4 +20,11 @@ public interface TaskService {
      * @param uid 用户 id
      */
     void create(CreateTaskReq req, Long uid);
+
+    /**
+     * 删除任务
+     * @param id 任务 id
+     * @param uid 用户 id
+     */
+    void delete(@NotNull Long id, Long uid);
 }

@@ -21,6 +21,13 @@ public interface TaskMapper extends BaseMapper<Task> {
      * @param dto 任务插入
      */
     void create(TaskInsertDto dto);
+
+    /**
+     * 查询任务
+     * @param id 任务 id
+     * @param uid 用户 id
+     */
+    Task queryByIdAndUid(Long id, Long uid);
 }
 
 
