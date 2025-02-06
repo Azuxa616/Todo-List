@@ -23,6 +23,8 @@
       router.push('/home/todo')
     }else if (index === '4') {
       router.push('/home/user')
+    }else if (index === '5') {
+      router.push('/home/about')
     }
   }
 </script>
