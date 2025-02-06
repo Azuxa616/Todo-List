@@ -11,6 +11,6 @@ import LoginForm from '@/components/Login_Form.vue'
 
 <style>
 .login-page {
-  margin-top: 15%;
+  padding: 15%;
 }
 </style>

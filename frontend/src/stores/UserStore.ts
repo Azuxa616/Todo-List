@@ -13,5 +13,21 @@ export const useAccountStore = defineStore('counter', () => {
         gender: 'male',
         signature: 'TestSignatureTestSignatureTestSignatureTestSignatureTestSignature',
     })
-    return { UserInfo }
+    const UserContent=reactive({
+        categories:[
+            {
+                index:1,
+                name:'Category01',
+            },
+            {
+                index:2,
+                name:'Category02',
+            },
+            {
+                index:3,
+                name:'Category03',
+            },
+        ]
+    })
+    return { UserInfo ,UserContent }
 })

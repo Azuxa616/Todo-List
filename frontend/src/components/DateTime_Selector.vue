@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import {ref, watch} from 'vue'
 
 const DateTime = ref('')
 console.log(DateTime.value)
@@ -8,19 +8,13 @@ console.log(DateTime.value)
 
 <template>
   <div class="demo-datetime-picker">
-
-    <div class="block">
-<!--      <span class="demonstration">Use value-format</span>-->
-<!--      <div class="demonstration">Value：{{ DateTime }}</div>-->
       <el-date-picker
           v-model="DateTime"
           type="datetime"
           placeholder="Pick a Date"
-          format="YYYY/MM/DD hh:mm:ss"
-          value-format="YYYY-MM-DD h:m:s a"
-      />
-    </div>
-
+          format="YYYY-MM-DD HH:mm:ss"
+          value-format="YYYY-MM-DD HH:mm:ss"
+    />
   </div>
 </template>
 
@@ -46,4 +40,5 @@ console.log(DateTime.value)
   font-size: 14px;
   margin-bottom: 20px;
 }
+
 </style>

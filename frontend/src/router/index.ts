@@ -4,8 +4,10 @@ import {unauthorized} from "@/net/index.js";
 import LoginPage from "@/pages/LoginPage.vue";
 import HomePage from "@/pages/HomePage.vue";
 import MyAccountPage from "@/pages/MyAccountPage.vue";
-import TodoListApp from "@/components/TodoList_App.vue";
+import TodoListApp from "@/pages/TodoList_App.vue";
 import RegisterPage from "@/pages/RegisterPage.vue";
+import WelcomePage from "@/pages/WelcomePage.vue";
+import AboutPage from "@/pages/AboutPage.vue";
 
 const router = createRouter({
     history:createWebHistory(),
@@ -32,6 +34,11 @@ const router = createRouter({
             meta: { isAuth: true, title:'主页' },
             children: [
                 {
+                    name:'welcome',
+                    path: '',
+                    component:WelcomePage
+                },
+                {
                     name:'myAccount',
                     path: 'user',
                     component:MyAccountPage
@@ -40,6 +47,11 @@ const router = createRouter({
                     name:'todoApp',
                     path: 'todo',
                     component:TodoListApp
+                },
+                {
+                    name:'about',
+                    path: 'about',
+                    component:AboutPage
                 }
                 ]
         }

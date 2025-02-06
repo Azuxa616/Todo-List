@@ -4,44 +4,44 @@
 
     <el-form-item  id="account-info" >
       <!--头像-->
-      <img class="avatar" :src="form.UserInfo.value.avatarUrl" alt="avatar" />
+      <img class="avatar" :src="form.avatarUrl" alt="avatar" />
 
       <div class="info-show-box">
         <el-form-item id="show-username" >
-            <span class="username">{{form.UserInfo.value.nickname}}</span>
+            <span class="username">{{form.nickname}}</span>
         </el-form-item>
         <!--账号id-->
-        <el-form-item id="show-uid" ><span class="uid" >UID:{{form.UserInfo.value.uid}}</span> </el-form-item>
+        <el-form-item id="show-uid" ><span class="uid" >UID:{{form.uid}}</span> </el-form-item>
       </div>
     </el-form-item>
 
     <!--用户名-->
     <el-form-item label="Username:">
-      <span class="uid" >{{form.UserInfo.value.username}}</span>
+      <span class="uid" >{{form.username}}</span>
     </el-form-item>
 <!--昵称-->
     <el-form-item label="Nickname:">
-      <el-input v-model="form.UserInfo.value.nickname" />
+      <el-input v-model="form.nickname" />
     </el-form-item>
 <!--邮箱-->
     <el-form-item label="Email:">
-      <el-input v-model="form.UserInfo.value.email" />
+      <el-input v-model="form.email" />
     </el-form-item>
 
 <!--    电话号码-->
     <el-form-item label="Phone Number:">
-      <el-input v-model="form.UserInfo.value.phone" />
+      <el-input v-model="form.phone" />
     </el-form-item>
 <!--    性别-->
     <el-form-item label="Gender:">
-      <el-radio-group v-model="form.UserInfo.value.gender">
+      <el-radio-group v-model="form.gender">
         <el-radio-button value="male">Male</el-radio-button>
         <el-radio-button value="female">Female</el-radio-button>
       </el-radio-group>
     </el-form-item>
 <!--    个签-->
     <el-form-item label="Signature">
-      <el-input v-model="form.UserInfo.value.signature" type="textarea" />
+      <el-input v-model="form.signature" type="textarea" />
     </el-form-item>
 
     <div>
@@ -63,11 +63,11 @@
 <script lang="ts" setup>
 import { reactive } from 'vue'
 import router from '@/router/index.ts'
-import {useAccountStore} from "@/stores/UserInfo.ts";
+import {useAccountStore} from "@/stores/UserStore.ts";
 import {storeToRefs} from 'pinia'
 
 const userStore = useAccountStore()
-const form=storeToRefs(userStore);
+const form=storeToRefs(userStore).UserInfo.value;
 //todo:表单验证
 
 const onSubmit = () => {
