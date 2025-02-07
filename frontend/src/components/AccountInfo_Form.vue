@@ -49,7 +49,7 @@
         <el-button id="save-btn" type="success" @click="onSubmit">Save</el-button>
       </div>
       <div class="Btn-group">
-        <el-button @click="onChangePassword" id="change-password-btn" type="primary">Change Password</el-button>
+        <ChangePassword_Dialog id="change-password-btn" />
         <el-button @click="onCancel" id="cancel-btn">Cancel</el-button>
       </div>
       <div>
@@ -65,6 +65,7 @@ import { reactive } from 'vue'
 import router from '@/router/index.ts'
 import {useAccountStore} from "@/stores/UserStore.ts";
 import {storeToRefs} from 'pinia'
+import ChangePassword_Dialog from "@/components/ChangePassword_Dialog.vue";
 
 const userStore = useAccountStore()
 const form=storeToRefs(userStore).UserInfo.value;
@@ -77,9 +78,6 @@ const onSubmit = () => {
 const onCancel = () => {
   router.go(0)
   //todo:取消操作
-}
-const onChangePassword = () => {
-  //todo:修改密码功能
 }
 const onExit = () => {
   //todo:退出登录功能
