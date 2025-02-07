@@ -3,6 +3,7 @@ package com.iflove.todolist.dao;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.iflove.todolist.domain.entity.TodolistTags;
 import com.iflove.todolist.mapper.TodolistTagsMapper;
+import jakarta.validation.constraints.NotNull;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -22,5 +23,15 @@ public class TodolistTagsDao extends ServiceImpl<TodolistTagsMapper, TodolistTag
      */
     public void mapTagsToTask(List<String> tagNameList, Long taskId) {
         baseMapper.mapTagsToTask(tagNameList, taskId);
+    }
+
+    /**
+     * 删除标签-任务映射关系
+     * @param id 任务 id
+     */
+    public void deleteRelations(@NotNull Long id) {
+        lambdaUpdate()
+                .eq(TodolistTags::getTask_id, id)
+                .remove();
     }
 }

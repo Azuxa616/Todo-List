@@ -19,11 +19,23 @@
 
 
     <!-- 插入任务 -->
-    <insert id="create" parameterType="com.iflove.todolist.domain.dto.TaskInsertDto" useGeneratedKeys="true" keyProperty="id">
+    <insert id="create" parameterType="com.iflove.todolist.domain.dto.TaskInfoDto" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO task (user_id, title, description, due_date, category_id)
         VALUES (#{uid}, #{title}, #{description}, #{dueDate},
                 (SELECT id FROM category WHERE user_id = #{uid} AND name = #{categoryName}));
     </insert>
+
+    <!-- 修改任务 -->
+    <update id="modify" parameterType="com.iflove.todolist.domain.dto.TaskInfoDto">
+        UPDATE task
+        <set>
+            <if test="title != null"> title = #{title}, </if>
+            <if test="description != null"> description = #{description}, </if>
+            <if test="dueDate != null"> due_date = #{dueDate}, </if>
+            <if test="categoryName != null"> category_id = (SELECT id FROM category WHERE user_id = #{uid} AND name = #{categoryName}), </if>
+        </set>
+        WHERE id = #{id} AND user_id = #{uid}
+    </update>
 
     <select id="queryByIdAndUid" resultType="com.iflove.todolist.domain.entity.Task">
         SELECT id FROM task WHERE id = #{id} AND user_id = #{uid};
